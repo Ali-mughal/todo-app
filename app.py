@@ -19,8 +19,9 @@ class Todo(db.Model):
 @app.route('/')
 def home():
     #get list of all the item
-    todo_list = Todo.query.all()
-    print(todo_list)
+    query = Todo.query.order_by(Todo.id.desc())
+    todo_list = query.all()
+   
     return render_template('base.html', todo_list=todo_list) 
 
 @app.route('/welcome')
